@@ -33,16 +33,26 @@ document.addEventListener("click",function (event) {
         userClickedPattern.push(userClickedColour);
         
         // see if the user input is right
-        if (userClickedPattern.length === gamePattern.length) {
-            if (arraysAreEqual(userClickedPattern, gamePattern)) {
-                    // enter the next round
-                    level++;
-                    userClickedPattern = [];
-                } else {state = "game-over";}
-            setTimeout(renderByState,800);
+        // if (userClickedPattern.length === gamePattern.length) {
+        //     if (arraysAreEqual(userClickedPattern, gamePattern)) {
+        //             // enter the next round
+        //             level++;
+        //             userClickedPattern = [];
+        //         } else {state = "game-over";}
+        //     setTimeout(renderByState,800);
+        // }
+       if (userClickedColour !== gamePattern[userClickedPattern.length-1]) {
+                state = "game-over";
+                renderByState();
+            } else if (userClickedPattern.length === gamePattern.length){
+                level++;
+                userClickedPattern = [];
+                setTimeout(renderByState,800);
+            }
         }
-    }
-}) 
+  }) 
+
+
 
 // render state
 function renderByState(){
@@ -110,18 +120,4 @@ function gameOver(){
     gamePattern = []; 
     userClickedPattern = []; 
     level = 1;
-}
-
-function arraysAreEqual(arr1, arr2) {
-    if (arr1.length !== arr2.length) {
-        return false;
-    }
-    
-    for (var i = 0; i < arr1.length; i++) {
-        if (arr1[i] !== arr2[i]) {
-            return false;
-        }
-    }
-    
-    return true;
 }
