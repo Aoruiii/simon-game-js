@@ -21,10 +21,10 @@ document.addEventListener("keydown",function (event) {
 document.addEventListener("click",function (event) {
     if (state === "ready"){
         state = "in-progress";
-        renderByState();
+        setTimeout(renderByState,800);
     } else if (state === "game-over") {
         state = "ready";
-        renderByState();
+        setTimeout(renderByState,800);
     } else if (state === "in-progress") {
         // record the user input
         var userClickedColour = event.target.id;
@@ -107,9 +107,9 @@ function gameOver(){
     setTimeout(function(){document.querySelector("body").classList.remove("game-over");},100);
     
     // // clear game history 
-    // gamePattern = []; 
-    // userClickedPattern = []; 
-    // level = 1;
+    gamePattern = []; 
+    userClickedPattern = []; 
+    level = 1;
 }
 
 function arraysAreEqual(arr1, arr2) {
