@@ -19,7 +19,13 @@ document.addEventListener("keydown",function (event) {
 
 // state change by click
 document.addEventListener("click",function (event) {
-    if (state === "in-progress") {
+    if (state === "ready"){
+        state = "in-progress";
+        renderByState();
+    } else if (state === "game-over") {
+        state = "ready";
+        renderByState();
+    } else if (state === "in-progress") {
         // record the user input
         var userClickedColour = event.target.id;
         buttonAnimation(userClickedColour);
